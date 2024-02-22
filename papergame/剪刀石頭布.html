@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>剪刀石頭布</title>
+</head>
+      <style>
+        body{
+            margin: 0;
+        }
+        .All{
+            width: 100%;
+            height: 100vh;
+            /* background-color: aquamarine; */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .box{
+            width: 100%;
+            height: 50%;
+            background-color: black;
+            display: flex;
+            justify-content:space-around;
+
+        
+        }
+        .title{
+            width: 100%;
+            height: 5%;
+            font-size:35px;
+            background-color: darkgray;
+            display: flex;
+            justify-content:space-around;
+
+        }
+        .box-1{
+            width: 30%;
+            height: 99%;
+            background-image:url(./IMG/問號.png);
+            /* border: 2px dashed black; */
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .box-1-1{
+            width: 30%;
+            height: 99%;
+            /* background-color: azure; */
+            text-align: center;
+            color:rgb(212, 5, 5);
+            line-height:450px ;
+            font-size: 130px;
+
+        }
+
+        .box-2{
+            width: 30%;
+            height: 99%;
+            background-image:url(./IMG/問號.png);
+            /* border: 2px dashed black; */
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .img-all{
+            width: 100%;
+            height: 30%;
+            background-color:black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .scissors img{
+            border-radius: 50%;
+        }
+        .stone img{
+            border-radius: 50%;
+        }
+        .paper img{
+            border-radius: 50%;
+        }
+        .img{
+            width: 200px;
+            height: 200px;
+            /* background-color: darkgray; */
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+        .btn-all{
+            width: 100%;
+            height: 15%;
+            background-color:darkgray;
+            display: flex;
+            justify-content:center;
+            align-items: center;  
+        }
+     
+        .result-box{
+            font-size: 40px;
+        }
+
+        .btn-box{
+            width: 150px;
+            height: 100px;
+            background-color:chocolate;
+            margin-left: 20px;
+            margin-right: 80px;
+            font-size: 35px;
+            cursor: pointer;
+        }
+
+        img{
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        .result{
+            font-size: 70px;
+        }
+        
+        </style>
+<body>
+    <div class="All">
+     <div class="title">
+        <div>我</div>
+        <div>剪刀石頭布</div>
+        <div>電腦</div>
+     </div>
+      <div class="box">
+        <div class="box-1"></div>
+        <div class="box-1-1">VS</div>
+        <div class="box-2"></div>
+      </div>
+      <div class="img-all">
+          <div class="scissors img">
+            <img src="./IMG/YA.png" alt="">
+          </div>
+          <div class="stone img">
+            <img src="./IMG/久陶.png" alt="">
+          </div>
+          <div class="paper img">
+            <img src="./IMG/伍佰.png" alt="">
+          </div>
+      </div>
+      <div class="btn-all">
+        <button class="start btn-box">開始</button>
+        <button class="restart btn-box">再一局</button>
+        <div class="result-box">結果:
+            <span class="result"></span>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+        let meImg = document.querySelector('.box-1')
+        let pcImg = document.querySelector('.box-2')
+        let scissors = document.querySelector('.scissors')
+        let stone = document.querySelector('.stone')
+        let paper = document.querySelector('.paper')
+        let start = document.querySelector('.start')
+        let restart = document.querySelector('.restart')
+        let result = document.querySelector('.result')
+
+        let scissorsImg = './IMG/YA.png'
+        let stoneImg = './IMG/久陶.png'
+        let paperImg = './IMG/伍佰.png'
+        let me = 0;
+
+        
+
+        scissors.addEventListener('click', function(){
+            me = 1;
+            document.querySelector('.box-1').style.backgroundImage = 'url('+ scissorsImg +')'; 
+            
+        })
+        stone.addEventListener('click', function(){
+            me = 2;
+            document.querySelector('.box-1').style.backgroundImage = 'url('+ stoneImg +')';
+          
+        })
+        paper.addEventListener('click', function(){
+            me = 3;
+            document.querySelector('.box-1').style.backgroundImage = 'url('+ paperImg +')';
+           
+        })
+        
+        start.addEventListener('click', function(){
+            if(me === 0){
+                alert('請出拳');
+                return;
+            }
+            let pc = Math.floor(Math.random()*3)+1;
+            if(pc === 1){
+                document.querySelector('.box-2').style.backgroundImage = 'url('+ scissorsImg +')'; 
+            }
+            else if(pc === 2){
+                document.querySelector('.box-2').style.backgroundImage = 'url('+ stoneImg +')';
+            }
+            else{
+                document.querySelector('.box-2').style.backgroundImage = 'url('+ paperImg +')';
+            }
+
+            if (me - pc === 0){
+                result.innerHTML = '平手'
+            }
+            else if (me - pc === 1 || me - pc === -2){
+                result.innerHTML = '贏惹'
+            }
+            else{
+                result.innerHTML = '輸惹'
+            }
+
+        })
+        restart.addEventListener('click',function(){
+            location.reload();
+        })
+    </script>
+    
+</body>
+</html>
